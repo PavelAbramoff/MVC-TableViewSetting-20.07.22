@@ -10,19 +10,19 @@ import UIKit
 
 class TableView: UIView, UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: - Element
+    
     private var model = [Section]()
 
     private var controller: ViewController?
     
     private lazy var tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
-        table.register(SettingTableViewCell.self,
-                       forCellReuseIdentifier: SettingTableViewCell.identifier)
-        table.register(SwitchTableViewCell.self,
-                       forCellReuseIdentifier: SwitchTableViewCell.identifier)
-        table.translatesAutoresizingMaskIntoConstraints = false
-        return table
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
     }()
+    
+    // MARK: - Lifecycle
     
     init(controller: ViewController) {
         super.init(frame: .zero)
@@ -35,10 +35,14 @@ class TableView: UIView, UITableViewDelegate, UITableViewDataSource {
         setupView()
     }
     
+    // MARK: - public function
+    
     private func setupView() {
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SetingtableViewCell")
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SwitchTableViewCell")
+        tableView.register(SettingTableViewCell.self,
+                           forCellReuseIdentifier: SettingTableViewCell.identifier)
+        tableView.register(SwitchTableViewCell.self,
+                           forCellReuseIdentifier: SwitchTableViewCell.identifier)
         tableView.dataSource = self
         setupHierarchy()
         setupLayout()
@@ -56,6 +60,8 @@ class TableView: UIView, UITableViewDelegate, UITableViewDataSource {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
+    
+    // MARK: - poblic function
     
     func setupData(data: [Section]) {
         model = data

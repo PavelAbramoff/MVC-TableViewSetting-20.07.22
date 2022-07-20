@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var model = [Section]()
+    private var model = Model.configure()
     
     private var myView: TableView? {
         guard isViewLoaded else { return nil }
@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = TableView(controller: self)
+        setupView()
     }
     
     private func setupView() {
