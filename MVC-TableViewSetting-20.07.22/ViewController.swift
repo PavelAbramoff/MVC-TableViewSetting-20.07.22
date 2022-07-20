@@ -8,10 +8,21 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    private var model = [Section]()
+    
+    private var myView: TableView? {
+        guard isViewLoaded else { return nil }
+        return view as? TableView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view = TableView(controller: self)
+    }
+    
+    private func setupView() {
+        myView?.setupData(data: model)
     }
 
 
