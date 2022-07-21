@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-class TableView: UIView, UITableViewDelegate, UITableViewDataSource {
+class TableView: UIView {
     
     // MARK: - Element
     
     private var model = [Section]()
-
+    
     private var controller: ViewController?
     
     private lazy var tableView: UITableView = {
@@ -76,7 +76,11 @@ class TableView: UIView, UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         model.count
     }
-    
+}
+
+// MARK: - UITableViewDataSource
+
+extension TableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         model[section].options.count
     }
@@ -106,7 +110,11 @@ class TableView: UIView, UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
-    
+}
+
+// MARK: - UITableViewDelegate
+
+extension TableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let type = model[indexPath.section].options[indexPath.row]

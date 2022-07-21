@@ -25,7 +25,5 @@ class ViewController: UIViewController {
     private func setupView() {
         myView?.setupData(data: model)
     }
-
-
 }
 
